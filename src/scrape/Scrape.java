@@ -3,6 +3,8 @@ package scrape;
 import java.util.ArrayList;
 import java.util.List;
 
+import config.Config;
+import config.ConfigDummy;
 import config.Param;
 import config.ScrapeParam;
 
@@ -73,10 +75,8 @@ public class Scrape {
 	}
 
 	List<ScrapeParam> readConfig() {
-		// ConfigƒNƒ‰ƒX‚©‚çŽæ‚é
-		ArrayList<ScrapeParam> sps = null; 
-		
-		return sps;
+		Config cd = new ConfigDummy();
+		return cd.readParams();
 	}
 	
 	String parseName(String html){
