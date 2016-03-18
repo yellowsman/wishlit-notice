@@ -21,32 +21,49 @@ public class Scrape {
 	}
 
 	List<Item> scrape(ScrapeParam sp) {
-		String parse_mode = "";
-		String parse_name = "";
-		String parse_price = "";
-		String parse_rate = "";
-		String parse_item_url = "";
-		String parse_image_url = "";
+		// dummy
+		String name = "";
+		int price = 100;
+		int rate = 100;
+		String item_url = "";
+		String image_url = "";
 		
+
 		ArrayList<Item> item_list = new ArrayList<Item>();
-		
-		for(Param p:sp.getParams()){
-			// jsoup‚Åp.getUrl()‚Åæ“¾‚µ‚½URL‚É‘Î‚µ‚Äparseˆ—
+
+		for (Param p : sp.getParams()) {
+			String html = p.getWishlistUrl();
 			
-			int price = 100;
-			int rate = 100;
+			// jsoup‚Åp.getUrl()‚Åæ“¾‚µ‚½URL‚É‘Î‚µ‚Äparseˆ—
+			if(html.equals("") == false){
+				name = parseName(html);
+				price = parsePrice(html);
+				rate = parseRate(html);
+				item_url = parseItemUrl(html);
+				image_url = parseImageUrl(html);
+			}
+
+			
 			// mode‚É‚æ‚Á‚Ä”»’è‚ğ•Ï‚¦‚é
-			if(p.getMode() == "price"){
-				if(price <= p.getBorder()) {
-					item_list.add(new Item());
-				}
-			}else{
-				if(rate >= p.getBorder()){
-					item_list.addAll(new Item());
-				}
+			if (p.getMode().equals("price") && price <= p.getBorder()) {
+				item_list.add(new Item(
+						name, 
+						price, 
+						rate,
+						item_url,
+						image_url
+				));
+			} else if (p.getMode().equals("rate") && rate >= p.getBorder()) {
+				item_list.add(new Item(
+						name, 
+						price, 
+						rate,
+						item_url, 
+						image_url
+				));
 			}
 		}
-		
+
 		return item_list;
 	}
 
@@ -56,6 +73,29 @@ public class Scrape {
 	}
 
 	List<ScrapeParam> readConfig() {
+		// ConfigƒNƒ‰ƒX‚©‚çæ‚é
+		ArrayList<ScrapeParam> sps = null; 
+		
+		return sps;
+	}
+	
+	String parseName(String html){
+		return null;
+	}
+	
+	int parsePrice(String html){
+		return 0;
+	}
+	
+	int parseRate(String html){
+		return 0;
+	}
+	
+	String parseItemUrl(String html){
+		return null;
+	}
+	
+	String parseImageUrl(String html){
 		return null;
 	}
 

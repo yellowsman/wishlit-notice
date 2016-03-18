@@ -13,7 +13,7 @@ public class Item {
 	public int getPrice() {
 		return price;
 	}
-	public int getCut_per() {
+	public int getRate() {
 		return rate;
 	}
 	public String getItem_url() {
@@ -22,12 +22,12 @@ public class Item {
 	public String getImage_url() {
 		return image_url;
 	}
-	public Item(String name, int price, int cut_per, String item_url,
+	public Item(String name, int price, int rate, String item_url,
 			String image_url) {
 		super();
 		this.name = name;
 		this.price = price;
-		this.rate = cut_per;
+		this.rate = rate;
 		this.item_url = item_url;
 		this.image_url = image_url;
 	}
