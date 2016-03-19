@@ -3,10 +3,19 @@ package scrape;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.jsoup.Jsoup;
+import org.jsoup.nodes.Document;
+import org.jsoup.select.Elements;
+
 import config.Config;
 import config.ConfigDummy;
 import config.Param;
 import config.ScrapeParam;
+
+// TODO:
+//  - cssQuery()を使って全件一致する方法を調べる(条件全てを使った検索)
+//  - 割引率のみならず割引額の場合を検討する
+
 
 public class Scrape {
 
@@ -79,24 +88,46 @@ public class Scrape {
 		return cd.readParams();
 	}
 	
-	String parseName(String html){
+	Elements parseItems(){
+		// wish-listのアイテムを全取得
+		String selector_css = "a-fixed-left-grid   a-spacing-large";
 		return null;
 	}
 	
-	int parsePrice(String html){
-		return 0;
+	String parseName(String html){
+		Document doc = Jsoup.parse(html);
+		return doc.select(".a-link-normal a-declarative").text();
 	}
 	
+	int parsePrice(String html){
+		Document doc = Jsoup.parse(html);
+		return Integer.parseInt(doc.select(".a-size-base a-color-price a-text-bold").text());
+	}
+	
+	// 割合か金額か判断
+	// 金額だった場合は元の値から割合を算出してから返す
 	int parseRate(String html){
-		return 0;
+		Document doc = Jsoup.parse(html);
+		return Integer.parseInt(doc.select(".a-row itemPriceDrop").text());
 	}
 	
 	String parseItemUrl(String html){
+		Document doc = Jsoup.parse(html);
 		return null;
 	}
 	
 	String parseImageUrl(String html){
+		Document doc = Jsoup.parse(html);
 		return null;
 	}
-
+	
+	boolean containSellText(String str){
+		return str.contains("値下がりしました:");
+	}
+	
+	// お気に入りリストに次にページがあればtrue
+	boolean isNextPage(Document doc){
+		return (doc.getElementById("wishlistPagination") != null);		
+	}
+		
 }
