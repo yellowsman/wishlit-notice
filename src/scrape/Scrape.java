@@ -78,16 +78,27 @@ public class Scrape {
 		return item_list;
 	}
 
+	
+	
+	// --------------------------------------
+	// メール送信処理
+	// --------------------------------------
 	boolean sendMail(List<Item> items, String address) {
 		return false;
-
 	}
-
+	
+	
+	// --------------------------------------
+	// パラメータ読み込み処理
+	// --------------------------------------
 	List<ScrapeParam> readConfig() {
 		Config cd = new ConfigDummy();
 		return cd.readParams();
 	}
 	
+	// --------------------------------------
+	// パース処理
+	// --------------------------------------
 	Elements parseItems(){
 		// wish-listのアイテムを全取得
 		String selector_css = "a-fixed-left-grid   a-spacing-large";
@@ -101,7 +112,7 @@ public class Scrape {
 	
 	int parsePrice(String html){
 		Document doc = Jsoup.parse(html);
-		return Integer.parseInt(doc.select(".a-size-base a-color-price a-text-bold").text());
+		return Integer.parseInt(doc.select(".a-size-base a-color-price a-text-bold").text()); // 金額まで取り出せていない
 	}
 	
 	// 割合か金額か判断
@@ -121,7 +132,7 @@ public class Scrape {
 		return null;
 	}
 	
-	boolean containSellText(String str){
+	boolean isContainSellText(String str){
 		return str.contains("値下がりしました:");
 	}
 	
@@ -129,5 +140,4 @@ public class Scrape {
 	boolean isNextPage(Document doc){
 		return (doc.getElementById("wishlistPagination") != null);		
 	}
-		
 }
