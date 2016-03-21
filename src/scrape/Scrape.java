@@ -19,8 +19,12 @@ import config.ScrapeParam;
 //  - cssQuery()を使って全件一致する方法を調べる(条件全てを使った検索)
 //  - 割引率のみならず割引額の場合を検討する
 
+// MEMO:
+//	- wishlistの固定リンクの末尾にパラメータでpage={番号}を付与すると遷移できる
+//  - 例) http://www.amazon.co.jp/registry/wishlist/3QBJIM8BYANLP/ref=cm_sw_r_tw_ws_r0h8wb0MXKGZD?page=2
+
 public class Scrape {
-	final String url_domain = "http://www.amazon.co.jp/";
+	
 
 	public static void main(String[] args) {
 		Scrape s = new Scrape();
