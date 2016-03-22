@@ -15,9 +15,13 @@ import org.junit.runners.JUnit4;
 
 import scrape.WishListParse;
 
+// TODO:
+// Testクラスの分割
+// 1つのクラスに1つのテストモデルを書く
+
 @RunWith(JUnit4.class)
 public class WishListParseTest {
-	final static String testcase_nextpage = "http://www.amazon.co.jp/registry/wishlist/3QBJIM8BYANLP/ref=cm_sw_r_tw_ws_jRX7wb0N6CX8K";
+	final static String testcase_nextpage_engineer = "http://www.amazon.co.jp/registry/wishlist/3QBJIM8BYANLP/ref=cm_sw_r_tw_ws_jRX7wb0N6CX8K";
 	final static String testcase_lowprice = "http://www.amazon.co.jp/registry/wishlist/3PM929GC0JA7B/ref=cm_sw_r_tw_ws_5RX7wb1CKD0HN";
 	static Elements elements;
 	static WishListParse wp;
@@ -27,7 +31,7 @@ public class WishListParseTest {
 
 	@BeforeClass
 	public static void setUpBeforeClass() throws Exception {
-		testcase = testcase_nextpage;
+		testcase = testcase_nextpage_engineer;
 		wp = new WishListParse();
 	}
 
@@ -63,7 +67,8 @@ public class WishListParseTest {
 	@Test
 	public void testParseItemUrl() {
 		String url = wp.parseItemUrl(elements.first());
-		assertThat(url, is("http://www.amazon.co.jp/" + "/dp/487311764X/ref=wl_it_dp_o_pC_nS_ttl?_encoding=UTF8&colid=3QBJIM8BYANLP&coliid=I3HVA8MVUC8IT2"));
+		assertThat(url, is("http://www.amazon.co.jp" 
+		+ "/dp/487311764X?_encoding=UTF8&colid=3QBJIM8BYANLP&coliid=I3HVA8MVUC8IT2"));
 	}
 
 	@Test
