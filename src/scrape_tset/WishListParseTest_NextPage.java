@@ -6,7 +6,6 @@ import static org.hamcrest.CoreMatchers.*;
 import java.io.IOException;
 
 import org.jsoup.Jsoup;
-import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
 import org.junit.BeforeClass;
 import org.junit.Test;
@@ -20,13 +19,13 @@ import scrape.WishListParse;
 // 1つのクラスに1つのテストモデルを書く
 
 @RunWith(JUnit4.class)
-public class WishListParseTest {
+public class WishListParseTest_NextPage {
 	final static String testcase_nextpage_engineer = "http://www.amazon.co.jp/registry/wishlist/3QBJIM8BYANLP/ref=cm_sw_r_tw_ws_jRX7wb0N6CX8K";
-	final static String testcase_lowprice = "http://www.amazon.co.jp/registry/wishlist/3PM929GC0JA7B/ref=cm_sw_r_tw_ws_5RX7wb1CKD0HN";
+	final static String testcase_lowprice_books = "http://www.amazon.co.jp/registry/wishlist/3PM929GC0JA7B/ref=cm_sw_r_tw_ws_5RX7wb1CKD0HN";
 	static Elements elements;
 	static WishListParse wp;
 	static String testcase;
-	WishListParseTest wpt;
+	WishListParseTest_NextPage wpt;
 	
 
 	@BeforeClass
@@ -60,6 +59,7 @@ public class WishListParseTest {
 		
 	}
 
+	
 	public void testParseRate() {
 		fail("Not yet implemented");
 	}
@@ -85,7 +85,7 @@ public class WishListParseTest {
 	@Test
 	public void testHasNextPage() {
 		try {
-			assertFalse(wp.hasNextPage(Jsoup.connect(testcase).get(),1));
+			assertFalse(wp.hasNextPage(Jsoup.connect(testcase).get(),-1));
 		} catch (IOException e) {
 			e.printStackTrace();
 		}

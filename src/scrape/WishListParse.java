@@ -63,7 +63,12 @@ public class WishListParse {
 	// 引数がどの値をもっていくか不明
 	// これならElementの方がマシ
 	public boolean isContainSellText(Element element) {
+		System.out.println(element.html());
 		String str = element.select(".a-row.itemPriceDrop").text();
+		int siz = element.select(".a-row.itemPriceDrop").size();
+		System.out.println(siz);
+		System.out.println(str);
+		
 		return str.contains("値下がりしました:");
 	}
 
@@ -72,7 +77,8 @@ public class WishListParse {
 	// 引数に番号を渡して、その値+1の位置の"pag-trigger"があればtrue
 	// なければ(要素数をオーバーする)ならfalse
 	public boolean hasNextPage(Document doc,int num) {
+		if(num <= 0) return false;
 		Elements els = doc.getElementsByAttributeValue("data-action", "pag-trigger");
-		return (els.size() <= num);
+		return (els.size() > 0 && els.size() <= num);
 	}
 }
