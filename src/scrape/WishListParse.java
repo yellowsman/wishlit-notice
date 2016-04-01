@@ -8,8 +8,6 @@ import org.jsoup.select.Elements;
 public class WishListParse {
 	final String url_domain = "http://www.amazon.co.jp";
 	
-	// 一度に全て商品カラムを子要素として保持しない可能性有り
-	// つまり一気に取得できないかも 要調査
 	public Elements parseItemList(String html) {
 		// wish-listのアイテムを全取得
 		String selector_css = ".a-fixed-left-grid.a-spacing-large";
@@ -53,7 +51,7 @@ public class WishListParse {
 	}
 
 	public String parseItemUrl(Element element) {
-		return url_domain + element.select(".a-link-normal.a-declarative").first().attr("href");
+		return url_domain + element.select(".a-link-normal.a-declarative").first().attr("href").substring(0, 15);
 	}
 
 	public String parseImageUrl(Element element) {
