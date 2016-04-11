@@ -1,0 +1,23 @@
+
+
+- route
+-- src
+   +-- auth
+   +-- log
+   +-- scrape
+   +-- mail
+   +-- storage
+   
+-- prop
+   +-- init.prop
+   
+-- log
+   +-- mail.log
+   +-- wishlsit.log
+   +-- storage.log
+    
+-- doc
+   +-- flow.txt
+   +-- class design.txt
+   +-- storage.txt
+   +-- concept.txt

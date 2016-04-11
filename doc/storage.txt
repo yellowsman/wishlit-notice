@@ -1,25 +1,29 @@
-[ƒf[ƒ^‚Ì•Û‘¶•û–@]
- - Google Drive‚Éƒf[ƒ^‚ð’u‚­(‰Šú—e—Ê:15GB)
- - Google Drive API ‚ðŽg‚Á‚Äƒtƒ@ƒCƒ‹‚ð‚â‚èŽæ‚è‚·‚é
- - API§ŒÀ‚Í100,000/“ú‚ç‚µ‚¢
+[ãƒ‡ãƒ¼ã‚¿ã®ä¿å­˜æ–¹æ³•]
+ - Google Driveã«ãƒ‡ãƒ¼ã‚¿ã‚’ç½®ã(åˆæœŸå®¹é‡:15GB)
+ - Google Drive API ã‚’ä½¿ã£ã¦ãƒ•ã‚¡ã‚¤ãƒ«ã‚’ã‚„ã‚Šå–ã‚Šã™ã‚‹
+ - APIåˆ¶é™ã¯100,000/æ—¥ã‚‰ã—ã„
  
-[Google Drive‚É’u‚©‚ê‚éƒtƒ@ƒCƒ‹]
- --[ƒ†[ƒUƒtƒ@ƒCƒ‹] Å‘å1MB/l‚ð‘z’è
- ---- ƒ†[ƒUID
- ---- ƒ†[ƒU–¼
- ---- ƒ[ƒ‹ƒAƒhƒŒƒX
- ---- ðŒŽí—Þ
- ---- ðŒ’l
- ---- WishlistƒŠƒXƒg(ƒŠƒXƒg)
- ------ Wishlist‚Ì–¼‘O(‹ó”’‰Â)
- ------ Wishlist‚ÌAmazon‚ÌURL(‹ó”’‰Â)
- -------- ƒAƒCƒeƒ€ƒŠƒXƒg(ƒŠƒXƒg)
- ---------- ƒAƒCƒeƒ€–¼
- ---------- “o˜^Žž‹àŠz
- ---------- Œ»Ý‹àŠz
- ---------- ƒAƒCƒeƒ€‚ÌAmazonã‚ÌURL
+[Google Driveã«ç½®ã‹ã‚Œã‚‹ãƒ•ã‚¡ã‚¤ãƒ«]
+ -- [ãƒ¦ãƒ¼ã‚¶ãƒ•ã‚¡ã‚¤ãƒ«] æœ€å¤§1MB/äººã‚’æƒ³å®š
+ ---- ãƒ¦ãƒ¼ã‚¶ID
+ ---- ãƒ¦ãƒ¼ã‚¶å
+ ---- ãƒ¡ãƒ¼ãƒ«ã‚¢ãƒ‰ãƒ¬ã‚¹
+ ---- æ¡ä»¶ç¨®é¡ž
+ ---- æ¡ä»¶å€¤
+ ---- ãƒ¡ãƒ¼ãƒ«é€ä¿¡ã®å‘¨æœŸ(1day,7day)
+ ---- ãƒ¡ãƒ¼ãƒ«ã®æœ€æ–°é€ä¿¡æ—¥
+ ---- Wishlistãƒªã‚¹ãƒˆ(ãƒªã‚¹ãƒˆ)
+ ------ Wishlistã®åå‰(ç©ºç™½å¯)
+ ------ Wishlistã®Amazonã®URL(ç©ºç™½å¯)
+ -------- ã‚¢ã‚¤ãƒ†ãƒ ãƒªã‚¹ãƒˆ(ãƒªã‚¹ãƒˆ)
+ ---------- ã‚¢ã‚¤ãƒ†ãƒ å
+ ---------- ç™»éŒ²æ™‚é‡‘é¡
+ ---------- ç¾åœ¨é‡‘é¡
+ ---------- é‡‘é¡æ›´æ–°æ—¥(yyyy/mm/dd)
+ ---------- ã‚¢ã‚¤ãƒ†ãƒ ã®ç”»åƒURL
+ ---------- ã‚¢ã‚¤ãƒ†ãƒ ã®Amazonä¸Šã®URL
  
- -- [ƒ†[ƒUƒŠƒXƒg]
- ---- ƒ†[ƒU”
- ---- ƒ†[ƒUID(ƒŠƒXƒg)
- ------ GoogleDriveã‚Å‚Ìƒ†[ƒUƒtƒ@ƒCƒ‹‚ÌID
+ -- [ãƒ¦ãƒ¼ã‚¶ãƒªã‚¹ãƒˆ]
+ ---- ãƒ¦ãƒ¼ã‚¶æ•°
+ ---- ãƒ¦ãƒ¼ã‚¶ID(ãƒªã‚¹ãƒˆ)
+ ------ GoogleDriveä¸Šã§ã®ãƒ¦ãƒ¼ã‚¶ãƒ•ã‚¡ã‚¤ãƒ«ã®ID

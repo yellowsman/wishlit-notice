@@ -1,10 +1,16 @@
-
-[�R���Z�v�g]
- Amazon��Wishlist����ǉ����Ƃ̍��z���v�Z���āA���z���w�肵�������𖞂����Ă����ꍇ�A���[���ɂĒʒm����
+[コンセプト]
+ AmazonのWishlistから追加日との差額を計算して、金額が指定した条件を満たしていた場合、メールにて通知する
  
-[�d�l]
- - ���[�U��Wishlist��ǉ��ł���
- - ����I��Wishlist���X�N���[�����ĐV�������i�A�V�����l�i���`�F�b�N����
- - �����ɂ͋��z�A�����z�A��������I�ׂ�
- - �F�؂ɂ�Twitter��FB�AGoogle+�A�J�E���g�𗘗p�ł���悤�ɂ���(�\��)
- - Wishlist�̃A�C�e���������6000����z��(������:30MB,�A�C�e��1��:0.5KB)
+[仕様]
+ - ユーザがWishlistを追加できる
+ - 定期的にWishlistをスクロールして新しい商品、新しい値段をチェックする
+ - 条件には金額、割引額、割引率を選べる
+ - 認証にはTwitterやFB、Google+アカウントを利用できるようにする(予定)
+ - Wishlistのアイテム数上限は6000件を想定(メモリ:30MB,アイテム1件:0.5KB)
+
+ [機能]
+ - Wishlistのアイテム確認
+ - GoogleDriveのファイル操作
+ - 割引率の計算
+ - AmazonSESとの接続/送信
+  

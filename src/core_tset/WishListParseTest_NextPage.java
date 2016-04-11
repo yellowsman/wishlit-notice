@@ -1,4 +1,4 @@
-package scrape_tset;
+package core_tset;
 
 import static org.junit.Assert.*;
 import static org.hamcrest.CoreMatchers.*;
@@ -12,7 +12,7 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.junit.runners.JUnit4;
 
-import scrape.WishListParse;
+import core.WishListParser;
 
 // TODO:
 // Testクラスの分割
@@ -23,7 +23,7 @@ public class WishListParseTest_NextPage {
 	final static String testcase_nextpage_engineer = "http://www.amazon.co.jp/registry/wishlist/3QBJIM8BYANLP/ref=cm_sw_r_tw_ws_jRX7wb0N6CX8K";
 	final static String testcase_lowprice_books = "http://www.amazon.co.jp/registry/wishlist/3PM929GC0JA7B/ref=cm_sw_r_tw_ws_5RX7wb1CKD0HN";
 	static Elements elements;
-	static WishListParse wp;
+	static WishListParser wp;
 	static String testcase;
 	WishListParseTest_NextPage wpt;
 	
@@ -31,7 +31,7 @@ public class WishListParseTest_NextPage {
 	@BeforeClass
 	public static void setUpBeforeClass() throws Exception {
 		testcase = testcase_nextpage_engineer;
-		wp = new WishListParse();
+		wp = new WishListParser();
 	}
 
 	@Test

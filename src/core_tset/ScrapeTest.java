@@ -1,4 +1,4 @@
-package scrape_tset;
+package core_tset;
 
 import static org.junit.Assert.*;
 
@@ -8,9 +8,9 @@ import java.util.List;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
-import scrape.Scrape;
 import config.Param;
 import config.ScrapeParam;
+import core.Scraper;
 
 public class ScrapeTest {
 
@@ -20,7 +20,7 @@ public class ScrapeTest {
 
 	@Test
 	public void testScrape() {
-		Scrape scrape = new Scrape();
+		Scraper scrape = new Scraper();
 		
 		Param p1 = createParam("http://aaa.co.jp", "price", 0);
 		Param p2 = createParam("http://bbb.co.jp", "price", 1000);
