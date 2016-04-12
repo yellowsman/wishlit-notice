@@ -32,7 +32,7 @@ public class Scraper {
 		Scraper s = new Scraper();
 		ArrayList<ScrapeParam> splist = (ArrayList<ScrapeParam>) s.readConfig();
 		for (ScrapeParam sp : splist) {
-			ArrayList<Item> items = (ArrayList<Item>) s.scrape(sp);
+			ArrayList<Item> items = (ArrayList<Item>) s.obtain(sp);
 			if (s.sendMail(items, sp.getAddress()) == false) {
 				// 送信失敗処理
 				// 再試行、再度失敗するならログに書き出すなど
@@ -40,7 +40,8 @@ public class Scraper {
 		}
 	}
 
-	public List<Item> scrape(ScrapeParam sparam) {
+	// Web上のWishlistのページをパースして情報を取得する
+	public List<Item> obtain(ScrapeParam sparam) {
 		// dummy
 		String name = "";
 		int price = 100;
@@ -77,30 +78,37 @@ public class Scraper {
 		return item_list;
 	}
 
-	public void scrape(ArrayList<WishList> wll) {
+	public void obtain(ArrayList<WishList> wll) {
 		for (WishList wl : wll) {
-			scrape(wl);
+			obtain(wl);
 		}
 	}
 
-	public void scrape(WishList wl) {
+	// 何するか忘れた
+	// たぶん、Wishlistクラス
+	public void obtain(WishList wl) {
 		WishListParser wlp = new WishListParser();
 		String html;
 		try {
 			html = Jsoup.connect(wl.getWishListUrl()).get().html();
+			
+			// アイテムを抜き出す
 			Elements elements = wlp.parseItemList(html);
 
 			HashMap<String, Boolean> namemap = new HashMap<String, Boolean>();
+			
+			// 名前のリストを作る
 			for (Element e : elements) {
 				namemap.put(wlp.parseName(e), false);
 			}
 
+			// Wishlistにアイテムがあった場合、trueにする
+			// どういう意味？
 			for (Item i : wl.getItems()) {
 				namemap.replace(i.getName(), true);
 			}
 
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 
@@ -109,42 +117,26 @@ public class Scraper {
 		}
 
 	}
-
-	// Wishlistを更新する関数
-	// map処理のように、関数とリスト2つを渡して新しいリストを返す
+	
+	// --------------------------------------
+	// Wishlist操作処理
+	// --------------------------------------
 	public ArrayList<Item> wishlistUpdate(ArrayList<Item> origin, ArrayList<Item> current) {
 		ArrayList<Item> update = new ArrayList<Item>();
-
-		// 2つのリストで別々の位置を管理
-		Iterator<Item> oit = origin.iterator();
-		Iterator<Item> cit = current.iterator();
-
-		for (Item oitem = oit.next(); oit.hasNext() && cit.hasNext(); oitem = oit.next()) {
-			
-			// 今のアイテムリストに存在しなければスキップ
-			if (current.contains(oitem) == false)
-				continue;
-
-			for (Item nitem = cit.next(); cit.hasNext(); nitem = cit.next()) {
-				if (oitem.equals(nitem)) {
-					// メモリ消費量が1つのWishlistで3倍に膨れ上がる(origin,curretn,update)
-					// これでいいならこれでいいし、減らさないといけないなら減らす
-					// if処理がインスタンス生成の時間よりも早いならifを噛ませてインスタンス数を減らす
-					update.add(new Item(oitem.getName(), oitem.getOriginPrice(), nitem.getCurrentPrice(), oitem.getUpdateDate(), oitem.getImage_url(),
-							oitem.getDetail_url()));
-					break;
-
-				} else {
-					update.add(nitem);
-				}
+		
+		for(Item c:current){
+			if(origin.contains(c)){
+				// 過去のリストにアイテムが存在していた場合、オリジナル値段を使う
+				// 変更点が値段だけなので、可能ならもっと単純な処理に落とし込みたい
+				update.add(new Item(c.getName(), origin.get(origin.indexOf(c)).getOriginPrice(), c.getCurrentPrice(), c.getUpdateDate(), c.getImage_url(),
+						c.getDetail_url()));
+			}else{
+				update.add(c);
 			}
-
 		}
 		
 		return update;
 	}
-	
-	
 
 	// Wishlistからメールを送るべきアイテムを選び出す
 	public ArrayList<Item> wishlistFilter(ArrayList<Item> list,int filter_price) {

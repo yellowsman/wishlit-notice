@@ -12,7 +12,7 @@ public class WishListParser {
 	private String html;
 
 	public Elements parseItemList(String html) {
-		// wish-list�̃A�C�e����S�擾
+		// wish-listのアイテムを全取得
 		String selector_css = ".a-fixed-left-grid.a-spacing-large";
 		Document doc = Jsoup.parse(html);
 		return doc.select(selector_css);
@@ -23,30 +23,30 @@ public class WishListParser {
 	}
 
 	public int parsePrice(Element element) {
-		// "��"��","�Ɨ]���ȋ󔒂�����
+		// "￥"と","と余分な空白を除く
 		return Integer.parseInt(element
 				.select(".a-size-base.a-color-price.a-text-bold").text()
-				.replaceAll("��|,", "").trim());
+				.replaceAll("￥|,", "").trim());
 	}
 
-	// ���������z�����f
-	// ���z�������ꍇ�͌��̒l���犄�����Z�o���Ă���Ԃ�
+	// 割合か金額か判断
+	// 金額だった場合は元の値から割合を算出してから返す
 	public int parseRate(Element element) {
 		String rate_word = element.select(".a-row.itemPriceDrop").text();
 		if (rate_word.contains("%")) {
-			// sample => "�l�����肵�܂���: 9%"
+			// sample => "値下がりしました: 9%"
 			int p1 = rate_word.indexOf(":");
 			int p2 = rate_word.indexOf("%");
 			return Integer.parseInt(rate_word.substring(p1, p2 - 1).trim());
 		} else {
-			// sample => "�l�����肵�܂���: �� 1 �ق��������X�g�ɒǉ��������̉��i�́A��724 �ł���"
-			int p1 = rate_word.indexOf("��");
-			int p2 = rate_word.indexOf("��");
+			// sample => "値下がりしました: ￥ 1 ほしい物リストに追加した時の価格は、￥724 でした"
+			int p1 = rate_word.indexOf("￥");
+			int p2 = rate_word.indexOf("ほ"); // 値段の次の文字の位置を抜き出す
 			int low_price = Integer.parseInt(rate_word.substring(p1, p2 - 1)
 					.trim());
 
-			int p3 = rate_word.lastIndexOf("��");
-			int p4 = rate_word.indexOf("��");
+			int p3 = rate_word.lastIndexOf("￥");
+			int p4 = rate_word.indexOf("で"); // 値段の次の位置を抜き出す
 			int origin_price = Integer.parseInt(rate_word.substring(p3, p4 - 1)
 					.trim());
 
@@ -64,8 +64,8 @@ public class WishListParser {
 		return element.select("img").first().attr("src");
 	}
 
-	// �������ǂ̒l�������Ă������s��
-	// ����Ȃ�Element�̕����}�V
+	// 引数がどの値をもっていくか不明
+	// これならElementの方がマシ
 	public boolean isContainSellText(Element element) {
 		System.out.println(element.html());
 		String str = element.select(".a-row.itemPriceDrop").text();
@@ -73,13 +73,13 @@ public class WishListParser {
 		System.out.println(siz);
 		System.out.println(str);
 
-		return str.contains("�l�����肵�܂���:");
+		return str.contains("値下がりしました:");
 	}
 
-	// ���C�ɓ��胊�X�g�Ɏ��Ƀy�[�W�������true
-	// action="pag-trigger"�̐��𐔂���
-	// �����ɔԍ���n���āA���̒l+1�̈ʒu��"pag-trigger"�������true
-	// �Ȃ����(�v�f�����I�[�o�[����)�Ȃ�false
+	// お気に入りリストに次にページがあればtrue
+	// action="pag-trigger"の数を数える
+	// 引数に番号を渡して、その値+1の位置の"pag-trigger"があればtrue
+	// なければ(要素数をオーバーする)ならfalse
 	public boolean hasNextPage(Document doc, int num) {
 		if (num <= 0)
 			return false;

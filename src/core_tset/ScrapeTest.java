@@ -37,7 +37,7 @@ public class ScrapeTest {
 		
 		ScrapeParam sp = createScrapeParam("testId", "hogehoge@mail.com", params);
 		
-		scrape.scrape(sp);
+		scrape.obtain(sp);
 	}
 	
 	
