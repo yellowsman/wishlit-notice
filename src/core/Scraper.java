@@ -85,7 +85,7 @@ public class Scraper {
 	}
 
 	// 何するか忘れた
-	// たぶん、Wishlistクラス
+	// Wishlistの更新処理を書こうとしたのかも？
 	public void obtain(WishList wl) {
 		WishListParser wlp = new WishListParser();
 		String html;
@@ -102,8 +102,8 @@ public class Scraper {
 				namemap.put(wlp.parseName(e), false);
 			}
 
-			// Wishlistにアイテムがあった場合、trueにする
-			// どういう意味？
+			// wishlistのアイテム一覧の名前と、アイテムの名前を比較？
+			// どちらもソースが同じはずだから必ず同じになるはず…？
 			for (Item i : wl.getItems()) {
 				namemap.replace(i.getName(), true);
 			}
@@ -119,7 +119,7 @@ public class Scraper {
 	}
 	
 	// --------------------------------------
-	// Wishlist操作処理
+	// Wishlistファイル操作処理
 	// --------------------------------------
 	public ArrayList<Item> wishlistUpdate(ArrayList<Item> origin, ArrayList<Item> current) {
 		ArrayList<Item> update = new ArrayList<Item>();
@@ -139,7 +139,7 @@ public class Scraper {
 	}
 
 	// Wishlistからメールを送るべきアイテムを選び出す
-	public ArrayList<Item> wishlistFilter(ArrayList<Item> list,int filter_price) {
+	public ArrayList<Item> wishlistPickup(ArrayList<Item> list,int filter_price) {
 		ArrayList<Item> pickup = new ArrayList<Item>();
 		list.stream().filter(pri -> pri.getCurrentPrice() <= filter_price).map(i -> pickup.add(i));
 		return pickup;
